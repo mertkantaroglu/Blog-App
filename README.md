@@ -10,6 +10,7 @@
     - [Setup ](#setup-)
     - [Install ](#install-)
     - [Usage ](#usage-)
+    - [Test ](#test-)
   - [👥 Authors ](#-authors-)
     - [👤 **Mert Kantaroglu**](#-mert-kantaroglu)
   - [🔭 Future Features ](#-future-features-)
@@ -70,6 +71,8 @@ Clone this repository to your desired folder:
 
 ### Install <a name="install"></a>
 
+Install this project with:
+
 ```sh
   cd Blog App
   bundle install
@@ -77,8 +80,18 @@ Clone this repository to your desired folder:
 
 ### Usage <a name="usage"></a>
 
+To run the project, execute the following command:
+
 ```sh
   rails s
+```
+
+### Test <a name="test"></a>
+
+To test the project, execute the following command:
+
+```sh
+  rspec
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
