@@ -38,4 +38,32 @@ RSpec.describe Post, type: :model do
     post.likes_counter = -5
     expect(post).to_not be_valid
   end
+
+  it 'checks increase_post_counter' do
+    user = User.create!(name: 'Mert', posts_counter: 0)
+
+    post = user.posts.create!(title: 'Post title', text: 'Some post', comments_counter: 3, likes_counter: 2)
+
+    post.increase_post_counter
+    post.increase_post_counter
+    post.increase_post_counter
+
+    user.reload
+
+    expect(user.posts_counter).to eq(4)
+  end
+
+  it 'brings last five comments for the post' do
+    user = User.create!(name: 'Mert', photo: 'www.unsplash.com', bio: 'Lorem ipsum', posts_counter: 5)
+
+    post = user.posts.create!(title: 'first post', text: 'this is the first post', comments_counter: 3, likes_counter: 2)
+
+    comment1 = post.comments.create!(author_id: user.id, text: 'first comment')
+    comment2 = post.comments.create!(author_id: user.id, text: 'second comment')
+    comment3 = post.comments.create!(author_id: user.id, text: 'third comment')
+    comment4 = post.comments.create!(author_id: user.id, text: 'fourth comment')
+    comment5 = post.comments.create!(author_id: user.id, text: 'fifth comment')
+
+    expect(post.last_comments).to eq([comment5, comment4, comment3, comment2, comment1])
+  end
 end
