@@ -143,3 +143,31 @@ body {
   gap: 10px;
   justify-content: flex-end;
 }
+
+.create-post-btn {
+  width: 75vw;
+  margin: 1rem;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.post-input, .comment-input {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin-top: 1rem;
+  width: 50vw;
+}
+
+.post-title, .post-area, .post-btn, .comment-area, .comment-btn {
+  padding: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-comment-btn, .like-btn {
+  padding: 10px;
+}
