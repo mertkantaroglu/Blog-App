@@ -3,29 +3,27 @@
     <% if @user.last_posts.blank? %>
       <h2>There are no posts. Please add a post.</h2>
     <% else %>
-    <div class='final-post'>
-      <h3>Post # <%= @post.id %> by <%= @post.author.name%></h3>
-      <p class='counter'>Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %></p>
-      <p><%= @post.text %></p>
+      <div class='final-post'>
+        <h3>Post # <%= @post.id %> by <%= @post.author.name %></h3>
+        <p class='counter'>Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %></p>
+        <p><%= @post.text %></p>
 
-      <div class='buttons'>
-        <button class='create-comment-btn'>
-          <%= link_to 'Add New Comment', new_user_post_comment_path(@user, @post)%>
-        </button>
+        <div class='buttons'>
+          <button class='create-comment-btn'>
+            <%= link_to 'Add New Comment', new_user_post_comment_path(@user, @post) %>
+          </button>
 
-        <div>
           <%= form_with model: Like, url: user_post_likes_path(@post.author, @post) do |form| %>
             <%= form.submit 'Like Post', class: 'like-btn' %>
           <% end %>
         </div>
-      </div>
 
-      <% @post.comments.each do |comment| %>
-        <div class='comments'>
-          <p><%= comment.author.name %>:
-          <p><%= comment.text %>
-        </div>
-      <% end %>
+        <% @post.comments.each do |comment| %>
+          <div class='comments'>
+            <p><%= comment.author.name %>:
+            <p><%= comment.text %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </section>
