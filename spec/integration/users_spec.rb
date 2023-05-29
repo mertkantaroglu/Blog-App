@@ -19,7 +19,7 @@ describe 'testing users/index', type: :feature do
   end
 
   it 'displays profile picture for each user' do
-    @users.each do |user|
+    @users.each do |_user|
       expect(page).to have_css('img')
     end
   end
