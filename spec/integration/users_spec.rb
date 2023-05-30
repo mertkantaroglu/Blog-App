@@ -44,8 +44,7 @@ end
 RSpec.describe 'Testing User/show', type: :feature do
   before :each do
     # create a user to use in our tests
-    @user = User.create(name: 'Bunny', photo: 'https://somewhere.com/an_ordinary_photo.jpg',
-                        bio: 'Anyone in this world')
+    @user = User.create(name: 'Bunny', photo: 'https://somewhere.com/an_ordinary_photo.jpg', bio: 'Anyone in this world')
     @user.save
   end
   # checks if the user's profile picture can be seen
@@ -87,6 +86,7 @@ RSpec.describe 'Testing User/show', type: :feature do
     posts.each do |post_attrs|
       Post.create(author: @user, **post_attrs).save
     end
+
     visit user_path(@user)
     posts.first(3).each do |post|
       expect(page).to have_content(post[:title])
