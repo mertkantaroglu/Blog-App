@@ -2,19 +2,24 @@ require 'rails_helper'
 
 describe 'Posts', type: :request do
   describe 'GET all posts for the user' do
+    before(:each) do
+      # Create a user and assign it to @user
+      @user = User.create!(name: 'Mert', photo: 'www.unsplash.com', bio: 'Test', posts_counter: 3)
+    end
+
     it 'checks whether it brings successful response' do
-      get user_posts_path(:user_id)
+      get user_posts_path(user_id: @user.id)
       expect(response).to be_successful
     end
 
     it 'renders the index template' do
-      get user_posts_path(:user_id)
+      get user_posts_path(user_id: @user.id)
       expect(response).to render_template(:index)
     end
 
     it 'displays the body paragraph for users' do
-      get user_posts_path(:user_id)
-      expect(response.body).to include('All Posts')
+      get user_path(@user)
+      expect(response.body).to include('See all posts')
     end
   end
 
@@ -34,7 +39,7 @@ describe 'Posts', type: :request do
 
     it 'displays the body paragraph for users' do
       get "/users/#{user.id}/posts/#{post.id}"
-      expect(response.body).to include('This is the post with id:')
+      expect(response.body).to include('Post # ')
     end
   end
 end
