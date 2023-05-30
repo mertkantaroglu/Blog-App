@@ -14,8 +14,11 @@ describe 'Users', type: :request do
     end
 
     it 'displays the body paragraph for users' do
-      get '/users'
-      expect(response.body).to include('All Users')
+      user1 = User.create(name: 'Mert', photo: 'www.unsplash.com', bio: 'Test', posts_counter: 3)
+
+      get users_path
+
+      expect(response.body).to include(user1.name)
     end
   end
 
@@ -32,9 +35,13 @@ describe 'Users', type: :request do
       expect(response).to render_template(:show)
     end
 
-    it 'displays the body paragraph for specific user' do
+    it 'displays the body paragraph for a specific user' do
+      user = User.create(name: 'Mert', photo: 'www.unsplash.com', bio: 'Test', posts_counter: 3)
+
       get "/users/#{user.id}"
-      expect(response.body).to include('The page of the user with id:')
+
+      expect(response.body).to include(user.bio)
+      expect(response.body).to include("Number of posts: #{user.posts_counter}")
     end
   end
 end
