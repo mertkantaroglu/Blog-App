@@ -8,4 +8,14 @@
     </h2>
     <p class='post-num'>Number of posts: <%= user.posts_counter %></p>
   </div>
+
 <% end %>
+
+<%# <%= render partial: 'shared/logout' %>
+<div class="sign_out">
+<% if signed_in? %>
+  <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+<%else %>
+  <%= link_to "sign in", new_user_session_path %>
+<%end %>
+</div>
