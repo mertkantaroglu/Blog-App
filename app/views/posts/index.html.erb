@@ -34,12 +34,7 @@
     <% end %>
   </section>
 
-  <div class="sign_out">
-  <% if signed_in? %>
-    <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-  <%else%>
-    <%= link_to "sign in", new_user_session_path %>
-  <%end%>
-</div>
+  <%= render partial: 'shared/logout' %>
+
   <%= link_to 'Pagination', '#', class: 'pagination-btn' %>
 </div>

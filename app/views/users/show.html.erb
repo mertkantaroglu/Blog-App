@@ -30,11 +30,6 @@
   </section>
 
   <%= link_to 'See all posts', user_posts_path(user_id: @user.id), class: 'all-posts-btn' %>
-  <div class="sign_out">
-  <% if signed_in? %>
-    <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-  <%else%>
-    <%= link_to "sign in", new_user_session_path %>
-  <%end%>
-</div>
+
+  <%= render partial: 'shared/logout' %>
 </div>
