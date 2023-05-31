@@ -30,4 +30,6 @@
   </section>
 
   <%= link_to 'See all posts', user_posts_path(user_id: @user.id), class: 'all-posts-btn' %>
+
+  <%= render partial: 'shared/logout' %>
 </div>
