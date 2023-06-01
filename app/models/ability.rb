@@ -6,12 +6,12 @@ class Ability
 
     can :read, :all
 
-    if user.present?
-      can :manage, Post, author_id: user.id
+    return unless user.present?
 
-      if user.admin?
-        can :manage, :all
-      end
-    end
+    can :manage, Post, author_id: user.id
+
+    return unless user.admin?
+
+    can :manage, :all
   end
 end
