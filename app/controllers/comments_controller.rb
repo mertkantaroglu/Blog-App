@@ -11,9 +11,16 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to "/users/#{current_user.id}/posts/#{params[:post_id]}", notice: 'Comment created successfully'
     else
-      flash[:alert] = 'Something went wrong'
       render :new
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    redirect_to user_posts_path(@post)
   end
 
   private
