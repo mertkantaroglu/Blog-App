@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
     end
   end
 
-
   def new
     @comment = Comment.new
     @post = Post.find(params[:post_id])
@@ -21,14 +20,14 @@ class CommentsController < ApplicationController
 
     if @comment.save
       respond_to do |format|
-      format.html {redirect_to "/users/#{current_user.id}/posts/#{params[:post_id]}", notice: 'Comment created successfully'}
-      format.json { render json: @comment, status: :created}
+        format.html { redirect_to "/users/#{current_user.id}/posts/#{params[:post_id]}", notice: 'Comment created successfully' }
+        format.json { render json: @comment, status: :created }
       end
 
     else
       respond_to do |format|
-        format.html {render :new}
-        format.json { render json: @comment.errors, status: :unprocessable_entry}
+        format.html { render :new }
+        format.json { render json: @comment.errors, status: :unprocessable_entry }
       end
     end
   end
